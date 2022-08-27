@@ -1,14 +1,19 @@
 import React, { useState } from "react";
+import { searchPokemon } from "../api";
 
-const Searchbar = () => {
+const Searchbar = (props) => {
     const [search, setSearch] = useState("dito")
+    const { onSearch } = props
 
     const onChangeHandler = (e) => {
-       setSearch(e.target.value) 
+        setSearch(e.target.value)
+        if (e.target.value.length === 0) {
+            onSearch(undefined)
+        }
     }
 
     const onButtonClickHandler = () => {
-        
+        onSearch(search)
     }
 
     return (
